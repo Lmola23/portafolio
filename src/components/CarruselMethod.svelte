@@ -39,8 +39,9 @@
     let selectedIndex = $state(0);
     let emblaApi: any = null;
 
+    // Slightly slower autoplay reduces layout thrashing on slow devices
     const options = { loop: true, align: "start" as const };
-    const plugins = [autoplay({ delay: 4000, stopOnInteraction: false })];
+    const plugins = [autoplay({ delay: 6000, stopOnInteraction: false })];
 
     function onInit(event: CustomEvent) {
         emblaApi = event.detail;
@@ -62,10 +63,11 @@
             <div class="embla__container">
                 {#each methods as method, i}
                     <div class="embla__slide">
-                        <div
-                            class="method-card"
-                            style="background-image: url({method.img});"
-                        >
+                        <div class="method-card">
+                            <!-- Use an <img> for the background so the browser can lazy-load and decode async -->
+                            {#if method.img}
+                                <img class="method-bg" src={method.img} alt="" loading="lazy" decoding="async" fetchpriority="low" />
+                            {/if}
                             <!-- Dark gradient overlay -->
                             <div class="method-overlay"></div>
 
@@ -96,18 +98,6 @@
     </div>
 
     <!-- Dot indicators -->
-    <div class="flex items-center justify-center gap-2.5 mt-7">
-        {#each methods as _, i}
-            <button
-                onclick={() => emblaApi?.scrollTo(i)}
-                class="rounded-full transition-all duration-500
-                       {i === selectedIndex
-                    ? 'w-7 h-2 bg-gradient-to-r from-[#F53E1D] to-[#F7810A]'
-                    : 'w-2 h-2 bg-white/20 hover:bg-white/50'}"
-                aria-label="Ir al paso {i + 1}"
-            ></button>
-        {/each}
-    </div>
 </div>
 
 <style>
@@ -125,12 +115,15 @@
         display: flex;
         touch-action: pan-y pinch-zoom;
         margin-left: -0.75rem;
+        /* Promote to its own layer to avoid paint thrashing */
+        transform: translateZ(0);
     }
 
     .embla__slide {
         flex: 0 0 88%;
         min-width: 0;
         padding-left: 0.75rem;
+        will-change: transform;
     }
 
     @media (min-width: 640px) {
@@ -181,6 +174,7 @@
         overflow: hidden;
         cursor: pointer;
         user-select: none;
+        will-change: transform;
     }
 
     @media (min-width: 640px) {
@@ -215,6 +209,21 @@
             rgba(0, 0, 0, 0.8) 100%
         );
         z-index: 0;
+    }
+
+    /* Background image element optimized for lazy loading */
+    .method-bg {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center;
+        display: block;
+        filter: saturate(0.95) contrast(0.95);
+        transform-origin: center;
+        z-index: 0;
+        pointer-events: none;
     }
 
     /* ── Title area: top center ── */

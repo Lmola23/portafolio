@@ -33,13 +33,16 @@
 {#snippet Tech(url: string)}
     <div class="embla__slide flex-none px-3 sm:px-4 md:px-5 lg:px-6">
         <img
-            class="object-contain w-30 sm:w-14 md:w-20 lg:w-24 h-auto
+            class="tech-img object-contain w-30 sm:w-14 md:w-20 lg:w-24 h-auto
                    opacity-30 hover:opacity-80
                    grayscale hover:grayscale-0
-                   transition-all duration-400 ease-out
-                   hover:scale-120"
+                   transition-transform duration-400 ease-out
+                   will-change-transform"
             src={url}
             alt="tecnología"
+            loading="lazy"
+            decoding="async"
+            fetchpriority="low"
         />
     </div>
 {/snippet}
