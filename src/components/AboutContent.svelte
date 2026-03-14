@@ -9,16 +9,21 @@
         <img src={rectSvg.src} alt="" class="about-bg" aria-hidden="true" />
 
         <!-- Decorative Vector.svg figure -->
-        <img src={vectorSvg.src} alt="" class="about-vector" aria-hidden="true" />
+        <img
+            src={vectorSvg.src}
+            alt=""
+            class="about-vector"
+            aria-hidden="true"
+        />
 
         <!-- Text content -->
         <div class="about-content">
             <p class="about-text">
                 Nosotros Son A Dise&ntilde;o Estudio Enfocado En Claridad,
-                Artesan&iacute;a, Y Mundo Real Ejecuci&oacute;n. Nuestro Trabajar Abarca
-                Marca Sistemas, Digital Experiencias, Y F&iacute;sico Productos &mdash;
-                Todo Conformado A Trav&eacute;s De Considerado Dise&ntilde;o
-                Decisiones Y Preciso 3D.
+                Artesan&iacute;a, Y Mundo Real Ejecuci&oacute;n. Nuestro
+                Trabajar Abarca Marca Sistemas, Digital Experiencias, Y
+                F&iacute;sico Productos &mdash; Todo Conformado A Trav&eacute;s
+                De Considerado Dise&ntilde;o Decisiones Y Preciso 3D.
             </p>
             <a href="#proyectos" class="about-cta">Ver Portafolio</a>
         </div>
@@ -75,8 +80,7 @@
         bottom: -5%;
         left: 50%;
         transform: translateX(-50%);
-        width: 70%;
-        max-width: 36rem;
+        width: 100%;
         opacity: 0.6;
         z-index: 1;
         pointer-events: none;
@@ -159,11 +163,13 @@
         font-size: 0.875rem;
         font-weight: 600;
         color: #fff;
-        background: linear-gradient(135deg, #F53E1D, #F55714, #F7810A);
+        background: linear-gradient(135deg, #f53e1d, #f55714, #f7810a);
         padding: 0.75rem 2rem;
         border-radius: 9999px;
         text-decoration: none;
-        transition: opacity 0.3s ease, transform 0.3s ease;
+        transition:
+            opacity 0.3s ease,
+            transform 0.3s ease;
     }
 
     @media (min-width: 768px) {

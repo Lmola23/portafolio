@@ -165,7 +165,6 @@
 
 <section
     bind:this={sectionEl}
-    style="background: linear-gradient(180deg, #000000 0%, #0a0500 15%, #1a0a00 28%, #2d1200 38%, #4a1d00 46%, #7a3200 52%, #a84500 56%, #c45000 59%, #d45800 61%, #c45000 63%, #a84500 66%, #7a3200 70%, #4a1d00 76%, #2d1200 82%, #1a0a00 88%, #0a0500 94%, #000000 100%);"
     class="relative font-sans py-16 sm:py-20 md:py-28"
 >
     <!-- Section header -->
@@ -203,7 +202,7 @@
                     </h3>
 
                     <div
-                        class="w-14 sm:w-20 h-0.5 bg-gradient-to-r from-[#F53E1D] via-[#F55714] to-[#F7810A] rounded-full"
+                        class="w-3/4 sm:w-20 h-0.5 bg-gradient-to-r from-[#F53E1D] via-[#F55714] to-[#F7810A] rounded-full"
                     ></div>
 
                     <p
@@ -229,6 +228,5 @@
                 </div>
             </div>
         {/each}
-
     </div>
 </section>
